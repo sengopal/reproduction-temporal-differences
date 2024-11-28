@@ -1,0 +1,99 @@
+\documentclass[a4paper,12pt]{article}
+
+\usepackage[english]{babel}
+\usepackage[utf8x]{inputenc}
+\usepackage{amsmath}
+\usepackage{graphicx}
+\usepackage[colorinlistoftodos]{todonotes}
+\usepackage[ruled,vlined]{algorithm2e}
+ 
+\title{A paper with 12pt global font size}
+\author{You}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+
+\begin{algorithm}
+\SetAlgoLined
+\SetKw{KwBy}{by}
+\KwResult{Mean RMSE for each $\lambda$ over all training sets}
+\For{each $\lambda$}{
+    \For{each training set}{
+      initialize weights\;
+      \While{weights not converged}{
+        \For{each episode in the 10 sequences of the training set}{
+          \For{each state in the episode}{
+            prediction\_error = $P_{(t+1)} - P_{(t)}$\;
+            \For{each previous time steps in the episode}{
+                $ weighted\_errors =  $\lambda$^{step-length} * state\_vector $ \;
+                $\Delta$w += $\alpha$ * (prediction\_error) * weighted\_errors \;
+            }
+           }
+         }
+       }
+       weights = weights + $\sum \Delta$w \;
+    }
+    Compute RMSE for the weights against ideal predictions;
+ }
+ Compute RMSE mean for all training sets for that $\lambda$ \;
+ 
+ \caption{Average error on random walk problem under repeated presentations}
+\end{algorithm}
+
+\begin{algorithm}
+\SetAlgoLined
+\SetKw{KwBy}{by}
+\KwResult{Mean RMSE for each $\lambda$ over all training sets}
+\For{each $\lambda$}{
+    \For{each $\alpha$}{
+        \For{each training set}{
+          initialize weights\;
+            \For{each episode in the 10 sequences of the training set}{
+              \For{each state in the episode}{
+                prediction\_error = $P_{(t+1)} - P_{(t)}$\;
+                \For{each previous time steps in the episode}{
+                    $ weighted\_errors =  $\lambda$ ^{step-length} * state\_vector $ \;
+                    $\Delta$w += $\alpha$ * (prediction\_error) * weighted\_errors \;
+                }
+               }
+               weights = weights + $\sum \Delta$w \;
+             }
+        }
+        Compute RMSE for the weights against ideal predictions;
+    }
+    Compute RMSE mean for all training sets for that $\lambda$ \;
+}
+ 
+ \caption{Average error on random walk problem after experiencing 10 sequences.}
+\end{algorithm}
+
+\begin{algorithm}
+\SetAlgoLined
+\SetKw{KwBy}{by}
+\KwResult{Mean RMSE for each $\lambda$ over all training sets}
+\hspace*{\algorithmicindent} \textbf{Input:} map of $\lambda$ to best $\alpha$\\
+\For{each $\lambda$}{
+    \For{each training set}{
+      initialize weights\;
+        \For{each episode in the 10 sequences of the training set}{
+          \For{each state in the episode}{
+            prediction\_error = $P_{(t+1)} - P_{(t)}$\;
+            \For{each previous time steps in the episode}{
+                $ weighted\_errors =  $\lambda$ ^{step-length} * state\_vector $ \;
+                $\alpha$ = lookup\_from\_map($\lambda$) \;
+                $\Delta$w +=  $\alpha$ * (prediction\_error) * weighted\_errors \;
+            }
+           }
+           weights = weights + $\sum \Delta$w \;
+         }
+    }
+    Compute RMSE mean for all training sets for that $\lambda$ \;
+}
+ \caption{Average error on random walk problem after experiencing 10 sequences using best $\alpha$ for each $\lambda$}
+\end{algorithm}
+
+\end{abstract}
+
+\end{document}
